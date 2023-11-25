@@ -1,0 +1,43 @@
+<div class="container mt-4 mb-4">
+
+    <div class=" text-light text-center">
+        <h1>
+            Gestión de clientes
+        </h1>
+        <div class=" text-start text-2xl">
+            <p>
+                Señor usuario, en esta sección usted podrá gestionar los clientes de la empresa.
+            </p>
+        </div>
+    </div>
+    <div class=" text-light">
+        <div class="d-flex justify-content-between mb-2">
+            <p>
+                Clientes registrados: 4
+            </p>
+            <button type="button" class="btn btn-primary">Crear cliente</button>
+        </div>
+
+        <table class="table text-light">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cliente of listClientes;">
+                    <th scope="row">{{cliente.id}}</th>
+                    <td>{{cliente.nombre}}</td>
+                    <td>{{cliente.apellido}}</td>
+                    <td>{{cliente.email}}</td>
+                    <td>{{cliente.createAt}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

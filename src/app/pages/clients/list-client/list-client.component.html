@@ -13,31 +13,49 @@
     <div class=" text-light">
         <div class="d-flex justify-content-between mb-2">
             <p>
-                Clientes registrados: 4
+                Clientes registrados: {{listClientes.length}}
             </p>
             <button type="button" routerLink="/clientes/crear-cliente" class="btn btn-primary">Crear cliente</button>
         </div>
+        <div class="" *ngIf="listClientes.length > 0; else sinRegistros;">
+            <table class="table text-light">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cliente of listClientes;">
+                        <th scope="row">{{cliente.id}}</th>
+                        <td>{{cliente.nombre}}</td>
+                        <td>{{cliente.apellido}}</td>
+                        <td>{{cliente.email}}</td>
+                        <td>{{cliente.createAt}}</td>
+                        <td>
+                            <div class="d-flex justify-between gap-2">
+                                <button type="button" class="btn btn-primary btn-sm" (click)="viewUpdateCliente(cliente)">
+                                    Editar
+                                </button>
+                                <button type="button" class="btn btn-danger btn-sm">
+                                    Eliminar
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <ng-template class="" #sinRegistros>
+            <div class="alert alert-warning " role="alert">
+                No hay registros de clientes.
+            </div>
+        </ng-template>
 
-        <table class="table text-light">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Apellido</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Fecha</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let cliente of listClientes;">
-                    <th scope="row">{{cliente.id}}</th>
-                    <td>{{cliente.nombre}}</td>
-                    <td>{{cliente.apellido}}</td>
-                    <td>{{cliente.email}}</td>
-                    <td>{{cliente.createAt}}</td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 
 </div>

@@ -6,6 +6,7 @@ import { ListClientComponent } from "../list-client/list-client.component";
 const routes: Routes = [
     { path: 'ver-clientes', component: ListClientComponent },
     { path: 'crear-cliente', component: CreateClientComponent },
+    { path: 'editar-cliente', component: CreateClientComponent },
 ];
 
 @NgModule({

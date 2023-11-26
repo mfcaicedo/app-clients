@@ -1,19 +1,20 @@
 <div class="container mt-4">
     <div class="text-light">
         <h1>
-            Crear clientes
+            {{!isUpdate ? 'Crear clientes' : 'Editar cliente' }}
         </h1>
         <p>
-            Señor usuario, en este apartado podrá crear clientes para su empresa.
+            Señor usuario, en este apartado podrá {{!isUpdate ? 'crear clientes para su empresa.' :
+            'editar el cliente seleccionado.'}}
         </p>
         <div class="container-form">
             <form (ngSubmit)="onSubmit()" [formGroup]="formGroupCliente">
                 <div class="container-inputs row center" style="margin: 0 auto!important;">
                     <div class="mb-3 col-12 col-sm-6 col-lg-6">
                         <label for="input-nombre" class="form-label">Nombre*:</label>
-                        <input type="text" class="form-control" id="input-nombre" formControlName="nombre" placeholder="Ej. Milthon"
-                            aria-describedby="campo-nota-nombre">
-                            <div *ngIf="formGroupCliente.get('nombre')?.touched &&
+                        <input type="text" class="form-control" id="input-nombre" formControlName="nombre"
+                            placeholder="Ej. Milthon" aria-describedby="campo-nota-nombre">
+                        <div *ngIf="formGroupCliente.get('nombre')?.touched &&
                                 formGroupCliente.get('nombre')?.hasError('required')">
                             <span id="campo-nota" class="text-danger">
                                 <i>Este campo es obligatorio</i>
@@ -35,8 +36,8 @@
                     </div>
                     <div class="mb-3 col-12 col-sm-6 col-lg-6">
                         <label for="input-apellido" class="form-label">Apellido*:</label>
-                        <input type="text" class="form-control" id="input-apellido" formControlName="apellido" placeholder="Ej. Caicedo"
-                            aria-describedby="campo-nota-apellido">
+                        <input type="text" class="form-control" id="input-apellido" formControlName="apellido"
+                            placeholder="Ej. Caicedo" aria-describedby="campo-nota-apellido">
                         <div *ngIf="formGroupCliente.get('apellido')?.touched &&
                             formGroupCliente.get('apellido')?.hasError('required')">
                             <span id="campo-nota" class="text-danger">
@@ -61,8 +62,8 @@
                     </div>
                     <div class="mb-3 col-12 col-sm-12 col-lg-12">
                         <label for="input-email" class="form-label">Correo*:</label>
-                        <input type="email" class="form-control" id="input-email" formControlName="email" placeholder="Ej. example@gmail.com"
-                            aria-describedby="campo-nota-email">
+                        <input type="email" class="form-control" id="input-email" formControlName="email"
+                            placeholder="Ej. example@gmail.com" aria-describedby="campo-nota-email">
                         <div *ngIf="formGroupCliente.get('email')?.touched &&
                                 formGroupCliente.get('email')?.hasError('required')">
                             <span id="campo-nota" class="text-danger">
@@ -79,8 +80,14 @@
                             Digita tu correo aquí.
                         </div>
                     </div>
-                    <div class="d-flex justify-content-start" style="margin: 0 auto;">
-                        <button type="submit" class="btn btn-primary col-12 col-sm-6 col-md-4">Guardar Cliente</button>
+                    <div class="d-flex justify-content-start gap-1" style="margin: 0 auto;">
+                        <button type="submit" class="btn btn-primary col-12 col-sm-6 col-md-4">
+                            {{!isUpdate ? 'Guardar Cliente': 'Actualizar cliente'}}
+                        </button>
+                        <button type="button" class="btn btn-danger col-12 col-sm-6 col-md-4"
+                            (click)="returnViewVerClientes()">
+                            Cancelar
+                        </button>
                     </div>
                 </div>
             </form>

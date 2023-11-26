@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Cliente } from 'src/app/interfaces/client.interface';
 import { ClientService } from 'src/app/services/client.service';
 
@@ -11,7 +12,9 @@ export class ListClientComponent {
 
   listClientes: Cliente[] = []; 
 
-  constructor(private readonly clienteService: ClientService) {}
+  constructor(private readonly clienteService: ClientService, 
+    private router: Router
+    ) {}
 
   ngOnInit(): void {
 
@@ -25,6 +28,11 @@ export class ListClientComponent {
 
     })
 
+  }
+
+  viewUpdateCliente(cliente: any){
+    console.log("cliente ", cliente);
+    this.router.navigate(['/clientes/editar-cliente', cliente]);
   }
 
 }

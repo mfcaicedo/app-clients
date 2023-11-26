@@ -17,4 +17,12 @@ export class ClientService {
     
   }
 
+  getCliente(id: number): Observable<Cliente>{
+    return this.http.get<Cliente>(`${ENVIRONMENT.url_api_clientes}/clientes/${id}`);
+  }
+
+  deleteCliente(id: number): Observable<any>{
+    return this.http.delete<any>(`${ENVIRONMENT.url_api_clientes}/clientes/${id}`);
+  }
+
 }

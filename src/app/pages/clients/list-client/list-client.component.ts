@@ -10,29 +10,47 @@ import { ClientService } from 'src/app/services/client.service';
 })
 export class ListClientComponent {
 
-  listClientes: Cliente[] = []; 
+  listClientes: Cliente[] = [];
 
-  constructor(private readonly clienteService: ClientService, 
+  constructor(private readonly clienteService: ClientService,
     private router: Router
-    ) {}
+  ) { }
 
   ngOnInit(): void {
 
+    this.getClientes();
+
+  }
+
+  getClientes() {
+
     this.clienteService.getClientes().subscribe({
       next: (data) => {
-        this.listClientes = data; 
-      }, 
+        this.listClientes = data;
+      },
       error: (error) => {
         console.log(error);
       }
-
     })
 
   }
 
-  viewUpdateCliente(cliente: any){
-    console.log("cliente ", cliente);
+  viewUpdateCliente(cliente: any) {
     this.router.navigate(['/clientes/editar-cliente', cliente]);
+  }
+
+  deleteCliente(idCliente: any) {
+
+    this.clienteService.deleteCliente(idCliente).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.getClientes();
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
+
   }
 
 }

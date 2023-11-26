@@ -17,7 +17,6 @@ export class ListClientComponent {
 
     this.clienteService.getClientes().subscribe({
       next: (data) => {
-        console.log("data ", data);
         this.listClientes = data; 
       }, 
       error: (error) => {

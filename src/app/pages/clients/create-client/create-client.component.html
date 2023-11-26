@@ -1,31 +1,89 @@
-<div class="container">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="container mt-4">
+    <div class="text-light">
+        <h1>
+            Crear clientes
+        </h1>
+        <p>
+            Señor usuario, en este apartado podrá crear clientes para su empresa.
+        </p>
+        <div class="container-form">
+            <form (ngSubmit)="onSubmit()" [formGroup]="formGroupCliente">
+                <div class="container-inputs row center" style="margin: 0 auto!important;">
+                    <div class="mb-3 col-12 col-sm-6 col-lg-6">
+                        <label for="input-nombre" class="form-label">Nombre*:</label>
+                        <input type="text" class="form-control" id="input-nombre" formControlName="nombre" placeholder="Ej. Milthon"
+                            aria-describedby="campo-nota-nombre">
+                            <div *ngIf="formGroupCliente.get('nombre')?.touched &&
+                                formGroupCliente.get('nombre')?.hasError('required')">
+                            <span id="campo-nota" class="text-danger">
+                                <i>Este campo es obligatorio</i>
+                            </span>
+                        </div>
+                        <div *ngIf="formGroupCliente.get('nombre')?.touched &&
+                            formGroupCliente.get('nombre')?.hasError('minlength')">
+                            <span id="campo-nota" class="text-danger">
+                                <i>No puede tener menos de 4 caracteres</i>
+                            </span>
+                        </div>
+                        <div *ngIf="formGroupCliente.get('nombre')?.touched &&
+                            formGroupCliente.get('nombre')?.hasError('maxlength')">
+                            <span id="campo-nota" class="text-danger">
+                                <i>o puede tener más de 12 caracteres</i>
+                            </span>
+                        </div>
+                        <div id="campo-nota-nombre" class="form-text">Digita tu nombre aquí.</div>
+                    </div>
+                    <div class="mb-3 col-12 col-sm-6 col-lg-6">
+                        <label for="input-apellido" class="form-label">Apellido*:</label>
+                        <input type="text" class="form-control" id="input-apellido" formControlName="apellido" placeholder="Ej. Caicedo"
+                            aria-describedby="campo-nota-apellido">
+                        <div *ngIf="formGroupCliente.get('apellido')?.touched &&
+                            formGroupCliente.get('apellido')?.hasError('required')">
+                            <span id="campo-nota" class="text-danger">
+                                <i>Este campo es obligatorio</i>
+                            </span>
+                        </div>
+                        <div *ngIf="formGroupCliente.get('apellido')?.touched &&
+                            formGroupCliente.get('apellido')?.hasError('minlength')">
+                            <span id="campo-nota" class="text-danger">
+                                <i>No puede tener menos de 4 caracteres</i>
+                            </span>
+                        </div>
+                        <div *ngIf="formGroupCliente.get('apellido')?.touched &&
+                            formGroupCliente.get('apellido')?.hasError('maxlength')">
+                            <span id="campo-nota" class="text-danger">
+                                <i>o puede tener más de 12 caracteres</i>
+                            </span>
+                        </div>
+                        <div id="campo-nota-apellido" class="form-text text-gray">
+                            Digita tu apellido aquí.
+                        </div>
+                    </div>
+                    <div class="mb-3 col-12 col-sm-12 col-lg-12">
+                        <label for="input-email" class="form-label">Correo*:</label>
+                        <input type="email" class="form-control" id="input-email" formControlName="email" placeholder="Ej. example@gmail.com"
+                            aria-describedby="campo-nota-email">
+                        <div *ngIf="formGroupCliente.get('email')?.touched &&
+                                formGroupCliente.get('email')?.hasError('required')">
+                            <span id="campo-nota" class="text-danger">
+                                <i>Este campo es obligatorio</i>
+                            </span>
+                        </div>
+                        <div *ngIf="formGroupCliente.get('email')?.touched &&
+                                formGroupCliente.get('email')?.hasError('email')">
+                            <span id="campo-nota" class="text-danger">
+                                <i>Debe digitar un emial válido</i>
+                            </span>
+                        </div>
+                        <div id="campo-nota-email" class="form-text">
+                            Digita tu correo aquí.
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-start" style="margin: 0 auto;">
+                        <button type="submit" class="btn btn-primary col-12 col-sm-6 col-md-4">Guardar Cliente</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

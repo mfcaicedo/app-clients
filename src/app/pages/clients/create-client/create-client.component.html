@@ -80,7 +80,27 @@
                             Digita tu correo aquí.
                         </div>
                     </div>
+                    <div class="">
+                        <h4 >
+                            Capturando errores del BackEnd
+                        </h4>
+                        <div class="" *ngIf="errorFlag">
+                            <div class="alert alert-danger" role="alert">
+                                <p>
+                                    {{errorList[0]?.nombre}}
+                                </p>
+                                <p>
+                                    {{errorList[0]?.apellido}}
+                                </p>
+                                <p>
+                                    {{errorList[0]?.email}}
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
                     <div class="d-flex justify-content-start gap-1" style="margin: 0 auto;">
+                        <!-- <button type="submit" [disabled]="formGroupCliente.invalid" class="btn btn-primary col-12 col-sm-6 col-md-4"> -->
                         <button type="submit" class="btn btn-primary col-12 col-sm-6 col-md-4">
                             {{!isUpdate ? 'Guardar Cliente': 'Actualizar cliente'}}
                         </button>

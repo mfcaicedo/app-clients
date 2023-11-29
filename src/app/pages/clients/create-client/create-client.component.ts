@@ -13,6 +13,8 @@ import Swal from 'sweetalert2';
 export class CreateClientComponent {
   formGroupCliente!: FormGroup;
   requestCliente!: Cliente;
+  errorList: any[] = [];
+  errorFlag: boolean = false;
   //Update 
   clienteUpdate!: Cliente;
   isUpdate: boolean = false;
@@ -62,10 +64,10 @@ export class CreateClientComponent {
 
   onSubmit() {
 
-    if (this.formGroupCliente.invalid) {
-      this.formGroupCliente.markAllAsTouched();
-      return;
-    }
+    // if (this.formGroupCliente.invalid) {
+    //   this.formGroupCliente.markAllAsTouched();
+    //   return;
+    // }
 
     if (this.isUpdate) {
       this.updateCliente();
@@ -131,6 +133,13 @@ export class CreateClientComponent {
       },
       error: (error) => {
         console.log("error ", error);
+        this.errorList = [];
+        this.errorList.push({
+          nombre: error.error?.nombre,
+          apellido: error.error?.apellido,
+          email: error.error?.email,
+        })
+        this.errorFlag = true;
         Swal.fire({
           title: 'Error',
           text: 'Error al crear el cliente, revisa los datos e intenta de nuevamente',
@@ -146,6 +155,5 @@ export class CreateClientComponent {
   returnViewVerClientes() {
     this.router.navigate(['/clientes/ver-clientes']);
   }
-
 
 }

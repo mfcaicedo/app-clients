@@ -56,8 +56,8 @@ export class CreateClientComponent {
 
   formGroupClienteInit() {
     return this.fb.group({
-      nombre: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(12)]],
-      apellido: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(12)]],
+      nombre: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(45)]],
+      apellido: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(45)]],
       email: ['', [Validators.required, Validators.email]],
     });
   }
@@ -97,7 +97,14 @@ export class CreateClientComponent {
         }, 1600);
       },
       error: (error) => {
-        console.log("error ", error);
+
+          this.errorList = [];
+          this.errorList.push({
+            nombre: error.error?.nombre,
+            apellido: error.error?.apellido,
+            email: error.error?.email,
+          })
+          this.errorFlag = true;
         Swal.fire({
           title: 'Error',
           text: 'Error al actualizar el cliente, revisa los datos e intenta de nuevamente',
@@ -132,7 +139,6 @@ export class CreateClientComponent {
         }, 1600);
       },
       error: (error) => {
-        console.log("error ", error);
         this.errorList = [];
         this.errorList.push({
           nombre: error.error?.nombre,

@@ -54,7 +54,6 @@ export class ListClientComponent {
 
         this.clienteService.deleteCliente(idCliente).subscribe({
           next: (data) => {
-            console.log(data);
             this.getClientes();
           },
           error: (error) => {

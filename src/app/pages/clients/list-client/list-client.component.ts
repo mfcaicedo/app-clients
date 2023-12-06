@@ -21,6 +21,8 @@ export class ListClientComponent {
 
     this.getClientes();
 
+    this.getRegiones(); 
+
   }
 
   getClientes() {
@@ -34,6 +36,17 @@ export class ListClientComponent {
       }
     })
 
+  }
+
+  getRegiones() {
+    this.clienteService.getRegiones().subscribe({
+      next: (data) => {
+        console.log("regiones: ", data);
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
   }
 
   viewUpdateCliente(cliente: any) {

@@ -26,6 +26,7 @@
                         <th scope="col">Apellido</th>
                         <th scope="col">Email</th>
                         <th scope="col">Fecha</th>
+                        <th scope="col">Region</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
@@ -36,6 +37,8 @@
                         <td>{{cliente.apellido}}</td>
                         <td>{{cliente.email}}</td>
                         <td>{{cliente.createAt}}</td>
+                        <td>{{cliente.region?.nombre}}</td>
+
                         <td>
                             <div class="d-flex justify-between gap-2">
                                 <button type="button" class="btn btn-primary btn-sm" (click)="viewUpdateCliente(cliente)">

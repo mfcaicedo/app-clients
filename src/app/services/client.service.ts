@@ -26,8 +26,4 @@ export class ClientService {
     return this.http.delete<any>(`${ENVIRONMENT.url_api_clientes}/clientes/${id}`);
   }
 
-  getRegiones(): Observable<Region>{
-    return this.http.get<Region>(`${ENVIRONMENT.url_api_clientes}/clientes/regiones`);
-  }
-
 }

@@ -73,15 +73,30 @@
                         <div *ngIf="formGroupCliente.get('email')?.touched &&
                                 formGroupCliente.get('email')?.hasError('email')">
                             <span id="campo-nota" class="text-danger">
-                                <i>Debe digitar un emial válido</i>
+                                <i>Debe digitar un email válido</i>
                             </span>
                         </div>
                         <div id="campo-nota-email" class="form-text">
                             Digita tu correo aquí.
                         </div>
                     </div>
+                    <div class="mb-3 col-12 col-sm-12 col-lg-12">
+                        <label for="input-region" class="form-label">Region*:</label>
+                        <select class="form-select" 
+                        aria-label="Default select example" name="" id="input-region"
+                            formControlName="region" [compareWith]="regionEqual">
+                            <option value="" disabled>--Seleccione una región--</option>
+                            <option *ngFor="let region of regiones" [ngValue]="region.id">{{region.nombre}}</option>
+                        </select>
+                        <div *ngIf="formGroupCliente.get('region')?.touched &&
+                                formGroupCliente.get('region')?.hasError('required')">
+                            <span id="campo-nota" class="text-danger">
+                                <i>Debe seleccionar una región</i>
+                            </span>
+                        </div>
+                    </div>
                     <div class="">
-                        <h4 >
+                        <h4>
                             Capturando errores del BackEnd
                         </h4>
                         <div class="" *ngIf="errorFlag">
@@ -94,6 +109,9 @@
                                 </p>
                                 <p>
                                     {{errorList[0]?.email}}
+                                </p>
+                                <p>
+                                    {{errorList[0]?.region}}
                                 </p>
                             </div>
                         </div>

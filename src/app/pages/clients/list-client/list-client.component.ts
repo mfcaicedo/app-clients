@@ -21,8 +21,6 @@ export class ListClientComponent {
 
     this.getClientes();
 
-    this.getRegiones(); 
-
   }
 
   getClientes() {
@@ -38,19 +36,16 @@ export class ListClientComponent {
 
   }
 
-  getRegiones() {
-    this.clienteService.getRegiones().subscribe({
-      next: (data) => {
-        console.log("regiones: ", data);
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    })
-  }
-
   viewUpdateCliente(cliente: any) {
-    this.router.navigate(['/clientes/editar-cliente', cliente]);
+    const clienteParam = {
+      id: cliente.id,
+      nombre: cliente.nombre,
+      apellido: cliente.apellido,
+      email: cliente.email,
+      createAt: cliente.createAt,
+      region: cliente.region.id,
+    }
+    this.router.navigate(['/clientes/editar-cliente', clienteParam]);
   }
 
   deleteCliente(idCliente: any) {

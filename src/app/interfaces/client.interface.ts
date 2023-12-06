@@ -6,5 +6,5 @@ export interface Cliente{
     apellido: string;
     createAt?: string | Date; 
     email: string, 
-    region?: Region;
+    region?: Region | null;
 }
